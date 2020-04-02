@@ -28,6 +28,7 @@ import ch.qos.logback.core.spi.ContextAwareBase;
 import ch.qos.logback.core.status.ErrorStatus;
 import ch.qos.logback.core.status.WarnStatus;
 import ch.qos.logback.core.util.FileUtil;
+import checkers.oigj.quals.O;
 
 /**
  * The <code>Compression</code> class implements ZIP and GZ file
@@ -35,9 +36,10 @@ import ch.qos.logback.core.util.FileUtil;
  *
  * @author Ceki G&uuml;lc&uuml;
  */
+//实现ZIP/GZIP文件的压缩或解压缩方法
 public class Compressor extends ContextAwareBase {
 
-    final CompressionMode compressionMode;
+    final CompressionMode compressionMode; //压缩模式
 
     static final int BUFFER_SIZE = 8192;
 
@@ -48,7 +50,7 @@ public class Compressor extends ContextAwareBase {
     /**
      * @param nameOfFile2Compress
      * @param nameOfCompressedFile
-     * @param innerEntryName 
+     * @param innerEntryName .zip压缩包内部的文件名
      *            The name of the file within the zip file. Use for ZIP compression.
      */
     public void compress(String nameOfFile2Compress, String nameOfCompressedFile, String innerEntryName) {
@@ -214,6 +216,15 @@ public class Compressor extends ContextAwareBase {
         return this.getClass().getName();
     }
 
+    /**
+     * 异步压缩
+     *
+     * @param nameOfFile2Compress
+     * @param nameOfCompressedFile
+     * @param innerEntryName
+     * @return
+     * @throws RolloverFailure
+     */
     public Future<?> asyncCompress(String nameOfFile2Compress, String nameOfCompressedFile, String innerEntryName) throws RolloverFailure {
         CompressionRunnable runnable = new CompressionRunnable(nameOfFile2Compress, nameOfCompressedFile, innerEntryName);
         ExecutorService executorService = context.getScheduledExecutorService();
@@ -221,10 +232,13 @@ public class Compressor extends ContextAwareBase {
         return future;
     }
 
+    /**
+     * 异步压缩任务定义
+     */
     class CompressionRunnable implements Runnable {
-        final String nameOfFile2Compress;
-        final String nameOfCompressedFile;
-        final String innerEntryName;
+        final String nameOfFile2Compress; //待压缩文件名
+        final String nameOfCompressedFile; //压缩后文件名
+        final String innerEntryName; //
 
         public CompressionRunnable(String nameOfFile2Compress, String nameOfCompressedFile, String innerEntryName) {
             this.nameOfFile2Compress = nameOfFile2Compress;
@@ -232,8 +246,8 @@ public class Compressor extends ContextAwareBase {
             this.innerEntryName = innerEntryName;
         }
 
+        @Override
         public void run() {
-
             Compressor.this.compress(nameOfFile2Compress, nameOfCompressedFile, innerEntryName);
         }
     }

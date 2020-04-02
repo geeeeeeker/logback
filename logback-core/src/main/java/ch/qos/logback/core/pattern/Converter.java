@@ -19,6 +19,7 @@ package ch.qos.logback.core.pattern;
  * 
  * @author ceki
  */
+//
 abstract public class Converter<E> {
 
     Converter<E> next;

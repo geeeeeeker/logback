@@ -28,6 +28,7 @@ import ch.qos.logback.core.status.WarnStatus;
  * @author Ceki G&uuml;lc&uuml;
  * @author Ralph Goers
  */
+//该Appender抽象类不保证线程安全,派生类需要自己处理线程安全问题
 abstract public class UnsynchronizedAppenderBase<E> extends ContextAwareBase implements Appender<E> {
 
     protected boolean started = false;

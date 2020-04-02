@@ -23,6 +23,9 @@ import ch.qos.logback.core.status.Status;
 import ch.qos.logback.core.status.StatusListener;
 import ch.qos.logback.core.status.StatusManager;
 
+/**
+ * 内部消息状态管理器(默认)
+ */
 public class BasicStatusManager implements StatusManager {
 
     public static final int MAX_HEADER_COUNT = 150;

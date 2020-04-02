@@ -7,7 +7,7 @@ public class CanonicalHostNamePropertyDefiner extends PropertyDefinerBase {
 
     @Override
     public String getPropertyValue() {
-        return new NetworkAddressUtil(getContext()).safelyGetCanonicalLocalHostName();
+        return new NetworkAddressUtil(super.getContext() /*ContextAwareBase*/).safelyGetCanonicalLocalHostName();
     }
 
 }

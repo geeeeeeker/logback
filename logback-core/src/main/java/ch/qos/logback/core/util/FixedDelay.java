@@ -19,6 +19,7 @@ package ch.qos.logback.core.util;
  * @author Carl Harris
  * @since 1.1.0
  */
+//固定延时策略
 public class FixedDelay implements DelayStrategy {
 
     private final long subsequentDelay;

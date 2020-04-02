@@ -25,6 +25,7 @@ import ch.qos.logback.core.AsyncAppenderBase;
  * @author Ceki G&uuml;lc&uuml;
  * @since 1.0.4
  */
+//为了优化性能,AsyncAppender允许级别在TRACE~INFO之间的Event被丢弃
 public class AsyncAppender extends AsyncAppenderBase<ILoggingEvent> {
 
     boolean includeCallerData = false;

@@ -55,7 +55,8 @@ abstract public class AppenderBase<E> extends ContextAwareBase implements Append
 
     static final int ALLOWED_REPEATS = 5;
 
-    public synchronized void doAppend(E eventObject) {
+    @Override
+    public synchronized /*保证不同线程使用同一个Appender日志输出线程安全*/ void doAppend(E eventObject) {
         // WARNING: The guard check MUST be the first statement in the
         // doAppend() method.
 

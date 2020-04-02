@@ -15,6 +15,7 @@ package ch.qos.logback.core.status;
 
 import java.util.Iterator;
 
+//内部状态事件抽象
 public interface Status {
 
     int INFO = 0;

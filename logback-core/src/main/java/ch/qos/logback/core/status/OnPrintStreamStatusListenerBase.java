@@ -84,6 +84,7 @@ abstract public class OnPrintStreamStatusListenerBase extends ContextAwareBase i
      * Invoking the start method can cause the instance to print status messages created less than 
      * value of retrospectiveThresold. 
      */
+    @Override
     public void start() {
         isStarted = true;
         if (retrospectiveThresold > 0) {
@@ -107,10 +108,12 @@ abstract public class OnPrintStreamStatusListenerBase extends ContextAwareBase i
         return retrospectiveThresold;
     }
 
+    @Override
     public void stop() {
         isStarted = false;
     }
 
+    @Override
     public boolean isStarted() {
         return isStarted;
     }

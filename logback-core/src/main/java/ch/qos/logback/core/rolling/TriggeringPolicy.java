@@ -24,7 +24,7 @@ import ch.qos.logback.core.spi.LifeCycle;
  *
  * @author Ceki G&uuml;lc&uuml;
  * */
-
+//控制日志轮转触发条件
 public interface TriggeringPolicy<E> extends LifeCycle {
 
     /**

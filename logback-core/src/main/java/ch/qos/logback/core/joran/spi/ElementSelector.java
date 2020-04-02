@@ -24,6 +24,7 @@ import java.util.List;
  * @author Ceki G&uuml;lc&uuml;
  * @since 1.1.0
  */
+//模式
 public class ElementSelector extends ElementPath {
 
     public ElementSelector() {

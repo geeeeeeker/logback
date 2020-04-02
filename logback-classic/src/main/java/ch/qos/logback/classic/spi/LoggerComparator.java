@@ -17,6 +17,7 @@ import java.util.Comparator;
 
 import ch.qos.logback.classic.Logger;
 
+//比较器以Logger名称的字典序进行优先级排序,并保证根Logger优先级最高
 public class LoggerComparator implements Comparator<Logger> {
 
     public int compare(Logger l1, Logger l2) {

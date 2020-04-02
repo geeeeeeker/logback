@@ -51,6 +51,7 @@ import ch.qos.logback.core.util.StatusPrinter;
  * 
  * Contributor: Sebastian Davids See http://bugzilla.qos.ch/show_bug.cgi?id=35
  */
+//使用JMX组件访问Logback完成配置
 public class JMXConfigurator extends ContextAwareBase implements JMXConfiguratorMBean, LoggerContextListener {
 
     private static String EMPTY = "";
@@ -233,6 +234,7 @@ public class JMXConfigurator extends ContextAwareBase implements JMXConfigurator
      * When the associated LoggerContext is stopped, this configurator must be
      * unregistered
      */
+    @Override
     public void onStop(LoggerContext context) {
         if (!started) {
             addInfo("onStop() method called on a stopped JMXActivator [" + objectNameAsString + "]");

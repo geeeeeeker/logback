@@ -27,7 +27,7 @@ import ch.qos.logback.core.util.COWArrayList;
 final public class FilterAttachableImpl<E> implements FilterAttachable<E> {
 
     @SuppressWarnings("unchecked")
-    COWArrayList<Filter<E>> filterList = new COWArrayList<Filter<E>>(new Filter[0]);
+    COWArrayList<Filter<E>> filterList = new COWArrayList<Filter<E>>(new Filter[0]); //维护Filter列表
 
     /**
      * Add a filter to end of the filter list.

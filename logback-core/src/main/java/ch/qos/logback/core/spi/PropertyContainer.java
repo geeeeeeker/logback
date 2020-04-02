@@ -15,6 +15,7 @@ package ch.qos.logback.core.spi;
 
 import java.util.Map;
 
+//属性容器
 public interface PropertyContainer {
 
     String getProperty(String key);

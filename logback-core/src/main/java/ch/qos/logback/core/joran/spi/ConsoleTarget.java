@@ -26,6 +26,7 @@ import java.io.OutputStream;
  * 
  * @sse LOGBACK-136
  */
+//控制台输出目标
 public enum ConsoleTarget {
 
     SystemOut("System.out", new OutputStream() {

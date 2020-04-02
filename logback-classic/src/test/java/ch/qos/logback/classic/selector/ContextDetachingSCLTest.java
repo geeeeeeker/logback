@@ -36,6 +36,7 @@ public class ContextDetachingSCLTest {
     @Before
     public void setUp() throws Exception {
 
+        //通过JVM层面设置系统属性,由ContextSelectorStaticBinder实现ContextSelector切换
         System.setProperty(ClassicConstants.LOGBACK_CONTEXT_SELECTOR, "JNDI");
 
         contextDetachingSCL = new ContextDetachingSCL();

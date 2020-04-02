@@ -27,6 +27,7 @@ import ch.qos.logback.core.model.Model;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
+//处理配置文件<logger>元素
 public class LoggerAction extends BaseModelAction {
 
     @Override

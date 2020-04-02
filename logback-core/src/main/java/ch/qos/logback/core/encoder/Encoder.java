@@ -27,6 +27,7 @@ import ch.qos.logback.core.spi.LifeCycle;
  *          event type
  * @since 0.9.19
  */
+//负责将Event转换为字节数组
 public interface Encoder<E> extends ContextAware, LifeCycle {
 
     /**

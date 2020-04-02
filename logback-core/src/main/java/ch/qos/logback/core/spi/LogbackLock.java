@@ -19,6 +19,7 @@ package ch.qos.logback.core.spi;
  *
  * @author Ceki G&uuml;lc&uuml;
  */
+//(内部统一)Logback对象锁
 public class LogbackLock extends Object {
 
 }

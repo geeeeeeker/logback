@@ -25,6 +25,7 @@ import ch.qos.logback.core.spi.LifeCycle;
  *
  * @author Carl Harris
  */
+//组件生命周期管理器
 public class LifeCycleManager {
 
     private final Set<LifeCycle> components = new HashSet<LifeCycle>();

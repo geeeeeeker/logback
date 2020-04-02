@@ -32,6 +32,7 @@ import ch.qos.logback.core.spi.FilterReply;
  *
  * @author S&eacute;bastien Pennec
  */
+//基于阈值过滤日志事件
 public class ThresholdFilter extends Filter<ILoggingEvent> {
 
     Level level;

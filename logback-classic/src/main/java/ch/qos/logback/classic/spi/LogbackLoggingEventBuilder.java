@@ -8,6 +8,7 @@ import org.slf4j.spi.LoggingEventBuilder;
 
 import ch.qos.logback.classic.Logger;
 
+//Logback未实现LoggingEventBuilder
 public class LogbackLoggingEventBuilder implements LoggingEventBuilder {
 
 	public LogbackLoggingEventBuilder(Logger logger, Level level) {

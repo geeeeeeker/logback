@@ -38,10 +38,12 @@ import ch.qos.logback.core.util.ContextUtil;
  * @author Heinz Richter
  * @author Ceki G&uuml;lc&uuml;
  */
+//轮转日志文件
 public class RollingFileAppender<E> extends FileAppender<E> {
-    File currentlyActiveFile;
-    TriggeringPolicy<E> triggeringPolicy;
-    RollingPolicy rollingPolicy;
+
+    File currentlyActiveFile; //当前激活(使用)文件
+    TriggeringPolicy<E> triggeringPolicy; //日志轮转触发策略
+    RollingPolicy rollingPolicy; //日志轮转策略
 
     static private String RFA_NO_TP_URL = CODES_URL + "#rfa_no_tp";
     static private String RFA_NO_RP_URL = CODES_URL + "#rfa_no_rp";

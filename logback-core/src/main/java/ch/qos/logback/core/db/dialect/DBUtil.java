@@ -38,6 +38,7 @@ public class DBUtil extends ContextAwareBase {
         SQLDialectCode dialectCode = SQLDialectCode.UNKNOWN_DIALECT;
 
         try {
+            //DatabaseMetaData可以获取DB产品及版本等信息
 
             String dbName = meta.getDatabaseProductName().toLowerCase();
 

@@ -23,6 +23,7 @@ import java.util.TimeZone;
  * @author Ceki G&uuml;lc&uuml;
  * @since 0.9.29
  */
+//SimpleDateFormat同步实现
 public class CachingDateFormatter {
 
     long lastTimestamp = -1;

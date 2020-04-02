@@ -33,6 +33,7 @@ public class EnvUtil {
     static public boolean isGroovyAvailable() {
         ClassLoader classLoader = Loader.getClassLoaderOfClass(EnvUtil.class);
         try {
+            //
             Class<?> bindingClass = classLoader.loadClass("groovy.lang.Binding");
             return (bindingClass != null);
         } catch (ClassNotFoundException e) {
@@ -41,7 +42,8 @@ public class EnvUtil {
     }
 
     private static ClassLoader getServiceLoaderClassLoader() {
-        return testServiceLoaderClassLoader == null ? Loader.getClassLoaderOfClass(EnvUtil.class) : testServiceLoaderClassLoader;
+        return testServiceLoaderClassLoader == null ?
+          Loader.getClassLoaderOfClass(EnvUtil.class) : testServiceLoaderClassLoader;
     }
 
     public static <T> T loadFromServiceLoader(Class<T> c) {

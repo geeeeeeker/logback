@@ -26,6 +26,7 @@ import ch.qos.logback.classic.LoggerContext;
  * @author Ceki G&uuml;lc&uuml;
  * @author S&eacute;bastien Pennec
  */
+//日志上下文选择器
 public interface ContextSelector {
 
     LoggerContext getLoggerContext();

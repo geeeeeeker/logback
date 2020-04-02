@@ -34,6 +34,7 @@ import ch.qos.logback.core.status.StatusManager;
 import ch.qos.logback.core.util.ExecutorServiceUtil;
 import ch.qos.logback.core.util.NetworkAddressUtil;
 
+//AccessContext和LoggerContext的公共父类
 public class ContextBase implements Context, LifeCycle {
 
     private long birthTime = System.currentTimeMillis();
@@ -46,12 +47,16 @@ public class ContextBase implements Context, LifeCycle {
     Map<String, String> propertyMap = new HashMap<String, String>();
     Map<String, Object> objectMap = new HashMap<String, Object>();
 
-    LogbackLock configurationLock = new LogbackLock();
+    LogbackLock configurationLock = new LogbackLock(); //配置监控器锁
 
-    private ScheduledExecutorService scheduledExecutorService;
-    protected List<ScheduledFuture<?>> scheduledFutures = new ArrayList<ScheduledFuture<?>>(1);
-    private LifeCycleManager lifeCycleManager;
-    private SequenceNumberGenerator sequenceNumberGenerator;
+    private ScheduledExecutorService scheduledExecutorService; //调度执行器服务,懒加载
+
+    protected List<ScheduledFuture<?>> scheduledFutures =
+      new ArrayList<ScheduledFuture<?>>(1); //调度执行器执行结果列表
+
+    private LifeCycleManager lifeCycleManager; //生命周期管理器,懒加载
+
+    private SequenceNumberGenerator sequenceNumberGenerator; //序列号生成器
   
 
     private boolean started;
@@ -60,6 +65,7 @@ public class ContextBase implements Context, LifeCycle {
         initCollisionMaps();
     }
 
+    @Override
     public StatusManager getStatusManager() {
         return sm;
     }
@@ -82,10 +88,12 @@ public class ContextBase implements Context, LifeCycle {
         this.sm = statusManager;
     }
 
+    @Override
     public Map<String, String> getCopyOfPropertyMap() {
         return new HashMap<String, String>(propertyMap);
     }
 
+    @Override
     public void putProperty(String key, String val) {
         if (HOSTNAME_KEY.equalsIgnoreCase(key)) {
             putHostnameProperty(val);
@@ -106,6 +114,7 @@ public class ContextBase implements Context, LifeCycle {
      * @param key
      * @return
      */
+    @Override
     public String getProperty(String key) {
         if (CONTEXT_NAME_KEY.equals(key))
             return getName();
@@ -133,11 +142,11 @@ public class ContextBase implements Context, LifeCycle {
 
         }
     }
-
+    @Override
     public Object getObject(String key) {
         return objectMap.get(key);
     }
-
+    @Override
     public void putObject(String key, Object value) {
         objectMap.put(key, value);
     }
@@ -145,18 +154,18 @@ public class ContextBase implements Context, LifeCycle {
     public void removeObject(String key) {
         objectMap.remove(key);
     }
-
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public void start() {
         // We'd like to create the executor service here, but we can't;
         // ContextBase has not always implemented LifeCycle and there are *many*
         // uses (mostly in tests) that would need to be modified.
         started = true;
     }
-
+    @Override
     public void stop() {
         // We don't check "started" here, because the executor service uses
         // lazy initialization, rather than being created in the start method
@@ -165,6 +174,7 @@ public class ContextBase implements Context, LifeCycle {
         started = false;
     }
 
+    @Override
     public boolean isStarted() {
         return started;
     }
@@ -199,18 +209,21 @@ public class ContextBase implements Context, LifeCycle {
         }
     }
 
+    @Override
     public long getBirthTime() {
         return birthTime;
     }
 
+    @Override
     public Object getConfigurationLock() {
         return configurationLock;
     }
 
-    @Override
+
     /**
      * @deprecated
      */
+    @Override
     public synchronized ExecutorService getExecutorService() {
         return getScheduledExecutorService();
     }
@@ -243,6 +256,7 @@ public class ContextBase implements Context, LifeCycle {
         }
     }
 
+    @Override
     public void register(LifeCycle component) {
         getLifeCycleManager().register(component);
     }
@@ -279,11 +293,13 @@ public class ContextBase implements Context, LifeCycle {
     public List<ScheduledFuture<?>> getScheduledFutures() {
         return new ArrayList<ScheduledFuture<?>>(scheduledFutures);
     }
-    
+
+    @Override
     public SequenceNumberGenerator getSequenceNumberGenerator() {
         return sequenceNumberGenerator;
     }
 
+    @Override
     public void setSequenceNumberGenerator(SequenceNumberGenerator sequenceNumberGenerator) {
         this.sequenceNumberGenerator = sequenceNumberGenerator;
     }

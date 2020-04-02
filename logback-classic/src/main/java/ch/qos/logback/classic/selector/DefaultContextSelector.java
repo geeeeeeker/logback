@@ -18,30 +18,36 @@ import java.util.List;
 
 import ch.qos.logback.classic.LoggerContext;
 
+//日志上下文选择器默认实现
 public class DefaultContextSelector implements ContextSelector {
 
-    private LoggerContext defaultLoggerContext;
+    private LoggerContext defaultLoggerContext; //默认日志上下文
 
     public DefaultContextSelector(LoggerContext context) {
         this.defaultLoggerContext = context;
     }
 
+    @Override
     public LoggerContext getLoggerContext() {
         return getDefaultLoggerContext();
     }
 
+    @Override
     public LoggerContext getDefaultLoggerContext() {
         return defaultLoggerContext;
     }
 
+    @Override
     public LoggerContext detachLoggerContext(String loggerContextName) {
         return defaultLoggerContext;
     }
 
+    @Override
     public List<String> getContextNames() {
         return Arrays.asList(defaultLoggerContext.getName());
     }
 
+    @Override
     public LoggerContext getLoggerContext(String name) {
         if (defaultLoggerContext.getName().equals(name)) {
             return defaultLoggerContext;

@@ -35,6 +35,7 @@ import ch.qos.logback.core.spi.ContextAwareBase;
  * @author Ceki G&uuml;lc&uuml;
  *
  */
+//解析XML文件时调用Action类的方法
 public abstract class Action extends ContextAwareBase {
 
     public static final String NAME_ATTRIBUTE = "name";
@@ -51,6 +52,7 @@ public abstract class Action extends ContextAwareBase {
      * Called when the parser encounters an element matching a
      * {@link ch.qos.logback.core.joran.spi.ElementSelector Pattern}.
      */
+    //当解析器遇到一个元素匹配到模式
     public abstract void begin(InterpretationContext intercon, String name, Attributes attributes) throws ActionException;
 
     /**
@@ -67,6 +69,7 @@ public abstract class Action extends ContextAwareBase {
      * Called when the parser encounters an endElement event matching a {@link ch.qos.logback.core.joran.spi.Pattern
      * Pattern}.
      */
+    //当解析器遇到一个结束元素匹配到模式
     public abstract void end(InterpretationContext intercon, String name) throws ActionException;
 
     public String toString() {
@@ -87,6 +90,8 @@ public abstract class Action extends ContextAwareBase {
         SaxEventInterpreter interpreter = intercon.getSaxEventInterpreter();
         if(interpreter == null)
             return -1;
+
+        //SAX支持行号定位
         Locator locator = interpreter.getLocator();
         if (locator != null) {
             return locator.getLineNumber();

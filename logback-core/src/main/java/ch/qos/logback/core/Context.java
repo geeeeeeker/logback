@@ -29,6 +29,7 @@ import ch.qos.logback.core.status.StatusManager;
  * @author Ceki Gulcu
  * 
  */
+//Logback组件之间跳转的主要锚点(类比Html的<a>标签)
 public interface Context extends PropertyContainer {
 
     /**
@@ -105,6 +106,7 @@ public interface Context extends PropertyContainer {
      * Object used for synchronization purposes. 
      * INTENDED FOR INTERNAL USAGE.
      */
+    //返回内部配置锁
     Object getConfigurationLock();
 
 

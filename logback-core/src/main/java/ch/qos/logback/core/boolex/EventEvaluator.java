@@ -25,7 +25,7 @@ import ch.qos.logback.core.spi.LifeCycle;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
-
+//评估事件是否匹配用户给定的标准
 public interface EventEvaluator<E> extends ContextAware, LifeCycle {
 
     /**

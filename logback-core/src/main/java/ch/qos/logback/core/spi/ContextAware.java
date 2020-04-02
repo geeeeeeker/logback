@@ -21,9 +21,13 @@ import ch.qos.logback.core.status.Status;
  */
 public interface ContextAware {
 
+    //Logback上下文
+
     void setContext(Context context);
 
     Context getContext();
+
+    //打印Logback内部状态消息,由System.out.println()实现
 
     void addStatus(Status status);
 

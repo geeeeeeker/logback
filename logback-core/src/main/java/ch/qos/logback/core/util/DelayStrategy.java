@@ -19,6 +19,7 @@ package ch.qos.logback.core.util;
  * @author Carl Harris
  * @since 1.1.0
  */
+//计算延时策略
 public interface DelayStrategy {
     /**
      * The value computed by this {@code DelayStrategy} for the next delay.

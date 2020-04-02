@@ -46,7 +46,7 @@ public class AsyncAppenderBase<E> extends UnsynchronizedAppenderBase<E> implemen
      * The default buffer size.
      */
     public static final int DEFAULT_QUEUE_SIZE = 256;
-    int queueSize = DEFAULT_QUEUE_SIZE;
+    int queueSize = DEFAULT_QUEUE_SIZE; //默认阻塞式缓冲队列长度256
 
     int appenderCount = 0;
 
@@ -279,8 +279,12 @@ public class AsyncAppenderBase<E> extends UnsynchronizedAppenderBase<E> implemen
         return aai.detachAppender(name);
     }
 
+    /**
+     *
+     */
     class Worker extends Thread {
 
+        @Override
         public void run() {
             AsyncAppenderBase<E> parent = AsyncAppenderBase.this;
             AppenderAttachableImpl<E> aai = parent.aai;
@@ -288,6 +292,7 @@ public class AsyncAppenderBase<E> extends UnsynchronizedAppenderBase<E> implemen
             // loop while the parent is started
             while (parent.isStarted()) {
                 try {
+                    //阻塞地从BlockingQueue队头中取Event
                     E e = parent.blockingQueue.take();
                     aai.appendLoopOnAppenders(e);
                 } catch (InterruptedException ie) {

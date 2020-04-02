@@ -39,7 +39,7 @@ import ch.qos.logback.core.util.Loader;
 public class ConsoleAppender<E> extends OutputStreamAppender<E> {
 
     protected ConsoleTarget target = ConsoleTarget.SystemOut;
-    protected boolean withJansi = false;
+    protected boolean withJansi = false; 
 
     private final static String AnsiConsole_CLASS_NAME = "org.fusesource.jansi.AnsiConsole";
     private final static String wrapSystemOut_METHOD_NAME = "wrapSystemOut";

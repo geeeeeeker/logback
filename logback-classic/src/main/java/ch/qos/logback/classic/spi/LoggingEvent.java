@@ -60,9 +60,13 @@ public class LoggingEvent implements ILoggingEvent {
     /**
      * The name of thread in which this logging event was generated.
      */
+    //生成当前日志事件的线程名
     private String threadName;
 
+    //日志器名称
     private String loggerName;
+
+    //
     private LoggerContext loggerContext;
     private LoggerContextVO loggerContextVO;
 

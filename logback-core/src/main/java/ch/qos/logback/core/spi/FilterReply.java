@@ -26,6 +26,7 @@ package ch.qos.logback.core.spi;
  *
  * @author S&eacute;bastien Pennec
  */
+//过滤器组件可能返回的响应值
 public enum FilterReply {
     DENY, NEUTRAL, ACCEPT;
 }

@@ -35,10 +35,10 @@ import ch.qos.logback.core.pattern.parser.Parser;
  * http://logback.qos.ch/manual/layouts.html#PatternLayout
  * 
  */
-
+//基于预定义Pattern实现ILoggingEvent转化为字符串
 public class PatternLayout extends PatternLayoutBase<ILoggingEvent> {
 
-    public static final Map<String, String> defaultConverterMap = new HashMap<String, String>();
+    public static final Map<String, String> defaultConverterMap = new HashMap<String, String>(); //预定义格式转换器缓存
     public static final String HEADER_PREFIX = "#logback.classic pattern: ";
 
     static {
@@ -77,6 +77,7 @@ public class PatternLayout extends PatternLayoutBase<ILoggingEvent> {
         defaultConverterMap.put("F", FileOfCallerConverter.class.getName());
         defaultConverterMap.put("file", FileOfCallerConverter.class.getName());
 
+        //MDC(Mapped Diagnostic Context)
         defaultConverterMap.put("X", MDCConverter.class.getName());
         defaultConverterMap.put("mdc", MDCConverter.class.getName());
 
@@ -134,6 +135,13 @@ public class PatternLayout extends PatternLayoutBase<ILoggingEvent> {
         return defaultConverterMap;
     }
 
+    /**
+     *
+     *
+     * @param event The event to format
+     * @return
+     */
+    @Override
     public String doLayout(ILoggingEvent event) {
         if (!isStarted()) {
             return CoreConstants.EMPTY_STRING;

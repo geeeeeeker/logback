@@ -28,20 +28,24 @@ import ch.qos.logback.core.spi.LifeCycle;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
+//内建规则Filter抽象
 public abstract class Filter<E> extends ContextAwareBase implements LifeCycle {
 
     private String name;
 
     boolean start = false;
 
+    @Override
     public void start() {
         this.start = true;
     }
 
+    @Override
     public boolean isStarted() {
         return this.start;
     }
 
+    @Override
     public void stop() {
         this.start = false;
     }

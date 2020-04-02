@@ -34,6 +34,7 @@ import ch.qos.logback.core.spi.FilterReply;
  * @author Ceki G&uuml;lc&uuml;
  * @author S&eacute;bastien Pennec
  */
+//根据给定的标准来评估给定的事件是否符合标准
 public class EvaluatorFilter<E> extends AbstractMatcherFilter<E> {
 
     EventEvaluator<E> evaluator;

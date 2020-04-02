@@ -27,6 +27,7 @@ import ch.qos.logback.core.spi.FilterReply;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
+//维护TurboFilter过滤器链,与LoggerContext绑定
 final public class TurboFilterList extends CopyOnWriteArrayList<TurboFilter> {
 
     private static final long serialVersionUID = 1L;

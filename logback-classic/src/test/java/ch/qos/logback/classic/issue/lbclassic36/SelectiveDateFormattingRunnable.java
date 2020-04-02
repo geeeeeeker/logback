@@ -30,7 +30,7 @@ public class SelectiveDateFormattingRunnable extends RunnableWithCounterAndDone 
     public static final String ISO8601_PATTERN = "yyyy-MM-dd HH:mm:ss,SSS";
 
     enum FormattingModel {
-        SDF, JODA;
+        SDF , JODA;
     }
 
     FormattingModel model;

@@ -28,6 +28,7 @@ import ch.qos.logback.core.spi.FilterReply;
  * @author Ceki G&uuml;lc&uuml;
  * @author S&eacute;bastien Pennec
  */
+//基于Level过滤日志事件
 public class LevelFilter extends AbstractMatcherFilter<ILoggingEvent> {
 
     Level level;

@@ -13,6 +13,9 @@
  */
 package ch.qos.logback.core.spi;
 
+/**
+ * 组件生命周期
+ */
 public interface LifeCycle {
 
     void start();

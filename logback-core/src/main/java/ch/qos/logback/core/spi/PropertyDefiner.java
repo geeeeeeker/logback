@@ -13,6 +13,7 @@
  */
 package ch.qos.logback.core.spi;
 
+//自定义属性节点<define>
 public interface PropertyDefiner extends ContextAware {
 
     /**

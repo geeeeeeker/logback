@@ -24,6 +24,7 @@ public interface LoggerContextListener {
      * reset. Such listeners are said to be reset resistant.
      * @return whether this listener is reset resistant or not.
      */
+    //当前监听器是否存在重置限制
     boolean isResetResistant();
 
     void onStart(LoggerContext context);
@@ -32,5 +33,6 @@ public interface LoggerContextListener {
 
     void onStop(LoggerContext context);
 
+    //监听Logger在某个LEVEL级别的变更
     void onLevelChange(Logger logger, Level level);
 }

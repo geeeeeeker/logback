@@ -44,6 +44,7 @@ import java.util.Vector;
  * @author Ceki G&uuml;lc&uuml;
  * @author S&eacute;bastien Pennec
  */
+//Web模块的Event
 public class AccessEvent implements Serializable, IAccessEvent {
 
     private static final String[] NA_STRING_ARRAY = new String[] { NA };

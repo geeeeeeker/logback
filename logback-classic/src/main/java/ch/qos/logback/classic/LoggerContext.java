@@ -51,26 +51,32 @@ import ch.qos.logback.core.status.WarnStatus;
  *
  * @author Ceki Gulcu
  */
-public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCycle {
+//管理Logger树、生产Logger实例、维护Logger缓存、维护LoggerContextListener
+public class LoggerContext extends ContextBase implements ILoggerFactory /* org.slf4j.ILoggerFactory */, LifeCycle {
 
     /** Default setting of packaging data in stack traces */
     public static final boolean DEFAULT_PACKAGING_DATA = false;
 
-    final Logger root;
+    final Logger root; //持有Logger树根结点
+
     private int size;
     private int noAppenderWarning = 0;
-    final private List<LoggerContextListener> loggerContextListenerList = new ArrayList<LoggerContextListener>();
 
-    private Map<String, Logger> loggerCache;
+    final private List<LoggerContextListener> loggerContextListenerList = new ArrayList<LoggerContextListener>(); //持有LoggerContextListener链
+
+    private Map<String, Logger> loggerCache; //Logger缓存
 
     private LoggerContextVO loggerContextRemoteView;
-    private final TurboFilterList turboFilterList = new TurboFilterList();
+
+    //维护TurboFilter链
+    private final TurboFilterList turboFilterList = new TurboFilterList(); //CopyOnWriteArrayList<TurboFilter>
+
     private boolean packagingDataEnabled = DEFAULT_PACKAGING_DATA;
     SequenceNumberGenerator sequenceNumberGenerator = null; // by default there is no SequenceNumberGenerator
     
     private int maxCallerDataDepth = ClassicConstants.DEFAULT_MAX_CALLEDER_DATA_DEPTH;
 
-    int resetCount = 0;
+    int resetCount = 0; //上下文重置次数
     private List<String> frameworkPackages;
 
     public LoggerContext() {
@@ -78,9 +84,11 @@ public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCy
         this.loggerCache = new ConcurrentHashMap<String, Logger>();
 
         this.loggerContextRemoteView = new LoggerContextVO(this);
-        this.root = new Logger(Logger.ROOT_LOGGER_NAME, null, this);
-        this.root.setLevel(Level.DEBUG);
-        loggerCache.put(Logger.ROOT_LOGGER_NAME, root);
+        this.root = new Logger(
+          Logger.ROOT_LOGGER_NAME /*org.slf4j.Logger.ROOT_LOGGER_NAME*/,
+          null, this);
+        this.root.setLevel(Level.DEBUG); //设置默认Level为DEBUG
+        loggerCache.put(Logger.ROOT_LOGGER_NAME, root); //缓存Logger
         initEvaluatorMap();
         size = 1;
         this.frameworkPackages = new ArrayList<String>();
@@ -114,6 +122,12 @@ public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCy
         return getLogger(clazz.getName());
     }
 
+    /**
+     * 生产Logger
+     *
+     * @param name
+     * @return
+     */
     @Override
     public Logger getLogger(final String name) {
 
@@ -128,7 +142,7 @@ public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCy
         }
 
         int i = 0;
-        Logger logger = root;
+        Logger logger = root; //标记当前Logger
 
         // check if the desired logger exists, if it does, return it
         // without further ado.
@@ -248,6 +262,11 @@ public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCy
         return turboFilterList;
     }
 
+    /**
+     *
+     *
+     * @param newFilter
+     */
     public void addTurboFilter(TurboFilter newFilter) {
         turboFilterList.add(newFilter);
     }
@@ -304,6 +323,8 @@ public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCy
                 toRetain.add(lcl);
             }
         }
+
+        //保留存在重置限制的监听器,删除无限制监听器
         loggerContextListenerList.retainAll(toRetain);
     }
 

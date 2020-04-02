@@ -17,6 +17,7 @@ import ch.qos.logback.core.spi.ContextAware;
 import ch.qos.logback.core.spi.FilterAttachable;
 import ch.qos.logback.core.spi.LifeCycle;
 
+//日志事件追加器
 public interface Appender<E> extends LifeCycle, ContextAware, FilterAttachable<E> {
 
     /**
@@ -29,6 +30,7 @@ public interface Appender<E> extends LifeCycle, ContextAware, FilterAttachable<E
      * is of type Object.
      * @param event
      */
+    //处理日志事件
     void doAppend(E event) throws LogbackException;
 
     /**

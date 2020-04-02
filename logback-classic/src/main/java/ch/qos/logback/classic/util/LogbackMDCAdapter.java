@@ -29,6 +29,8 @@ import org.slf4j.spi.MDCAdapter;
  * <b><em>The MDC is managed on a per thread basis</em></b>. Note that a child thread
  * <b>does not</b> inherit the mapped diagnostic context of its parent.
  * <p/>
+ * 子线程无法从父线程继承MDC信息
+ *
  * <p/>
  * For more information about MDC, please refer to the online manual at
  * http://logback.qos.ch/manual/mdc.html

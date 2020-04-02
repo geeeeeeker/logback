@@ -39,6 +39,7 @@ public class ContextAwareBase implements ContextAware {
         this.declaredOrigin = declaredOrigin;
     }
 
+    @Override
     public void setContext(Context context) {
         if (this.context == null) {
             this.context = context;
@@ -47,10 +48,16 @@ public class ContextAwareBase implements ContextAware {
         }
     }
 
+    @Override
     public Context getContext() {
         return this.context;
     }
 
+    /**
+     * 返回状态管理器
+     *
+     * @return
+     */
     public StatusManager getStatusManager() {
         if (context == null) {
             return null;
@@ -68,6 +75,7 @@ public class ContextAwareBase implements ContextAware {
         return declaredOrigin;
     }
 
+    @Override
     public void addStatus(Status status) {
         if (context == null) {
             if (noContextWarning++ == 0) {
@@ -81,26 +89,32 @@ public class ContextAwareBase implements ContextAware {
         }
     }
 
+    @Override
     public void addInfo(String msg) {
         addStatus(new InfoStatus(msg, getDeclaredOrigin()));
     }
 
+    @Override
     public void addInfo(String msg, Throwable ex) {
         addStatus(new InfoStatus(msg, getDeclaredOrigin(), ex));
     }
 
+    @Override
     public void addWarn(String msg) {
         addStatus(new WarnStatus(msg, getDeclaredOrigin()));
     }
 
+    @Override
     public void addWarn(String msg, Throwable ex) {
         addStatus(new WarnStatus(msg, getDeclaredOrigin(), ex));
     }
 
+    @Override
     public void addError(String msg) {
         addStatus(new ErrorStatus(msg, getDeclaredOrigin()));
     }
 
+    @Override
     public void addError(String msg, Throwable ex) {
         addStatus(new ErrorStatus(msg, getDeclaredOrigin(), ex));
     }

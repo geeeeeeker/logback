@@ -34,8 +34,10 @@ public interface RuleStore {
     /**
      * Add a new rule, given by a pattern and a action class (String).
      *
-     * @param elementSelector
-     * @param actionClassStr
+     * Rule由Pattern和Action组成
+     *
+     * @param elementSelector 模式(pattern)
+     * @param actionClassStr 行为(action)
      * @throws ClassNotFoundException
      */
     void addRule(ElementSelector elementSelector, String actionClassStr) throws ClassNotFoundException;

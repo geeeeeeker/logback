@@ -22,6 +22,7 @@ import ch.qos.logback.core.filter.Filter;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
+//向Appender添加Filter,说明Filter绑定Appender
 public interface FilterAttachable<E> {
     /**
      * Add a filter.

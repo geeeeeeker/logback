@@ -16,6 +16,7 @@ package ch.qos.logback.core;
 import ch.qos.logback.core.spi.ContextAware;
 import ch.qos.logback.core.spi.LifeCycle;
 
+//负责将Event转化为String
 public interface Layout<E> extends ContextAware, LifeCycle {
 
     /**

@@ -20,6 +20,7 @@ import java.util.List;
  * 
  * @author Ceki G&uuml;lc&uuml;
  */
+//管理内部错误消息(状态)
 public interface StatusManager {
 
     /**

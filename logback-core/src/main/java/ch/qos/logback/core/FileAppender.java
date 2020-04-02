@@ -38,7 +38,7 @@ import ch.qos.logback.core.util.FileUtil;
  */
 public class FileAppender<E> extends OutputStreamAppender<E> {
 
-    public static final long DEFAULT_BUFFER_SIZE = 8192;
+    public static final long DEFAULT_BUFFER_SIZE = 8192; //8192 Bytes
 
     static protected String COLLISION_WITH_EARLIER_APPENDER_URL = CODES_URL + "#earlier_fa_collision";
 

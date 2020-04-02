@@ -24,7 +24,8 @@ import ch.qos.logback.core.util.StatusListenerConfigHelper;
 public class ConfigurationModelHandler extends ModelHandlerBase {
 
 	static final String DEBUG_SYSTEM_PROPERTY_KEY = "logback.debug";
-	static final Duration SCAN_PERIOD_DEFAULT = Duration.buildByMinutes(1);
+
+	static final Duration SCAN_PERIOD_DEFAULT = Duration.buildByMinutes(1); //默认文件监听周期
 
 	public ConfigurationModelHandler(Context context) {
 		super(context);
